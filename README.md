@@ -61,7 +61,7 @@ MoveSpec is a CounterStrikeSharp plugin for CS2 that allows server admins to:
 - If you see errors about permissions, make sure your admin group is set up correctly in CounterStrikeSharp.
 
 ## Credits
-- Plugin by Your Name
+- Plugin by NoxianWill
 - Built for CounterStrikeSharp and CS2
 - Credits: [MenuManagerCS2](https://github.com/NickFox007/MenuManagerCS2) and [PlayerSettingsCS2](https://github.com/NickFox007/PlayerSettingsCS2)
 
