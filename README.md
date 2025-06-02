@@ -20,6 +20,7 @@ MoveSpec is a CounterStrikeSharp plugin for CS2 that allows server admins to:
 - PlayerSettingsCS2 plugin (PlayerSettings [Core] and PlayerSettingsApi.dll)
 
 > **Note:** These dependencies must be installed and working on your server. See their respective documentation for installation instructions.
+**Reference:** [MenuManagerCS2](https://github.com/NickFox007/MenuManagerCS2) and [PlayerSettingsCS2](https://github.com/NickFox007/PlayerSettingsCS2)
 
 ## Installation
 1. **Build the plugin** (or use a prebuilt release):
