@@ -43,6 +43,7 @@ public class MoveSpec : BasePlugin
             player?.PrintToChat("[MoveSpec] MenuManager not available!");
             return;
         }
+
         if (_tCaptain == null || _ctCaptain == null)
         {
             player?.PrintToChat("[MoveSpec] Both captains must be set first!");
@@ -64,6 +65,45 @@ public class MoveSpec : BasePlugin
         _pickedPlayers = 0;
         PrintToAll("[MoveSpec] Captain picking has started! CT captain picks first.");
         ShowPickingMenu(_ctCaptain);
+    }
+
+    [ConsoleCommand("css_mscancel", "Cancels the captain picking process and moves players back to teams")]
+    public void OnCancelCommand(CCSPlayerController? player, CommandInfo command)
+    {
+        if (!IsAdmin(player)) return;
+
+        if (!_isPickingInProgress)
+        {
+            player?.PrintToChat("[MoveSpec] No picking process in progress!");
+            return;
+        }
+
+        CancelPickingProcess();
+    }
+
+    private void CancelPickingProcess()
+    {
+        if (!_isPickingInProgress) return;
+
+        // Move all spectators back to teams
+        foreach (var p in Utilities.GetPlayers())
+        {
+            if (p != null && p.IsValid && p.PlayerPawn.IsValid && p.Team == CsTeam.Spectator)
+            {
+                // Alternate between T and CT teams
+                p.ChangeTeam(_isCTTurn ? CsTeam.CounterTerrorist : CsTeam.Terrorist);
+                _isCTTurn = !_isCTTurn;
+            }
+        }
+
+        // Reset all state
+        _isPickingInProgress = false;
+        _availablePlayers.Clear();
+        _pickedPlayers = 0;
+        _tCaptain = null;
+        _ctCaptain = null;
+
+        PrintToAll("[MoveSpec] Captain picking process has been cancelled. Players have been moved back to teams.");
     }
 
     [ConsoleCommand("css_tcapt", "Sets the Terrorist team captain")]
