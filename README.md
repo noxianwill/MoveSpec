@@ -43,15 +43,22 @@ MoveSpec is a CounterStrikeSharp plugin for CS2 that allows server admins to:
   - Sets the Counter-Terrorist (CT) team captain and moves them to the CT team.
 - `css_spec` - `!spec`
   - Moves all players (except the two captains) to spectator and starts the team picking process.
+  - **Note:** Both captains must be set before using this command.
+- `css_mscancel` - `!cancel`
+  - Cancels the current picking process.
+  - Moves all spectators back to teams (alternating between T and CT).
+  - Resets all plugin state (captains, picking progress, etc.).
+  - Only works when a picking process is in progress.
 
 ### Picking Process
-- After `css_spec`, all non-captains are moved to spectator.
-- The picking process begins, with the CT captain picking first.
-- A menu is shown to the current captain, listing all available players in spectator.
-- The captain selects a player from the menu; that player is moved to the captain's team.
-- Turns alternate between CT and T captains.
-- This continues until 8 players are picked (4 for each team), resulting in two teams of 5 (including the captains).
-- All actions and errors are announced in chat.
+1. Set both team captains using `!tcapt` and `!ctcapt`
+2. Use `!spec` to start the picking process
+3. The picking process begins, with the CT captain picking first
+4. A menu is shown to the current captain, listing all available players in spectator
+5. The captain selects a player from the menu; that player is moved to the captain's team
+6. Turns alternate between CT and T captains
+7. This continues until 8 players are picked (4 for each team), resulting in two teams of 5 (including the captains)
+8. If needed, use `!cancel` to stop the process and reset everything
 
 ## Permissions
 - Only players with the `@css/admin` permission can use the commands.
@@ -60,6 +67,7 @@ MoveSpec is a CounterStrikeSharp plugin for CS2 that allows server admins to:
 - Make sure all dependencies are installed and loaded (check with `css_plugins list`).
 - If you see errors about missing dependencies, double-check your server's plugin folders.
 - If you see errors about permissions, make sure your admin group is set up correctly in CounterStrikeSharp.
+- If `!spec` doesn't work, make sure both captains are set first.
 
 ## Credits
 - Plugin by NoxianWill
